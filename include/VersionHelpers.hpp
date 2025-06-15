@@ -9,16 +9,16 @@ typedef __success(return >= 0) LONG NTSTATUS;
 
 inline BOOL GetVersionEx2(LPOSVERSIONINFOW lpVersionInformation)
 {
-	HMODULE hNtDll = GetModuleHandleW(L"NTDLL"); // 获取ntdll.dll的句柄
-	typedef NTSTATUS(NTAPI* tRtlGetVersion)(PRTL_OSVERSIONINFOW povi); // RtlGetVersion的原型
+	HMODULE hNtDll = GetModuleHandleW(L"NTDLL"); 
+	typedef NTSTATUS(NTAPI* tRtlGetVersion)(PRTL_OSVERSIONINFOW povi); 
 	tRtlGetVersion pRtlGetVersion = NULL;
 	if (hNtDll)
 	{
-		pRtlGetVersion = (tRtlGetVersion)GetProcAddress(hNtDll, "RtlGetVersion"); // 获取RtlGetVersion地址
+		pRtlGetVersion = (tRtlGetVersion)GetProcAddress(hNtDll, "RtlGetVersion"); 
 	}
 	if (pRtlGetVersion)
 	{
-		return pRtlGetVersion((PRTL_OSVERSIONINFOW)lpVersionInformation) >= 0; // 调用RtlGetVersion
+		return pRtlGetVersion((PRTL_OSVERSIONINFOW)lpVersionInformation) >= 0; 
 	}
 	return FALSE;
 }

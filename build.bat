@@ -49,7 +49,8 @@ if defined GITHUB_ENV (
 	setlocal enabledelayedexpansion
 	echo git_ref_name=%PRODUCT_VERSION%>>!GITHUB_ENV!
 )
-
+set BOOST_ROOT=H:\weasel\deps\boost_1_84_0
+echo %BOOST_ROOT%\boost
 if defined BOOST_ROOT (
   if exist "%BOOST_ROOT%\boost" goto boost_found
 )
